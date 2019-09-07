@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { FaGithub, FaRegPlusSquare, FaSpinner } from 'react-icons/fa';
 
 import api from '../../services/api';
-import { Container, Form, SubmitButton, List } from './styles';
+
+import Container from '../../components/Container';
+import { Form, SubmitButton, List } from './styles';
 
 export default class Main extends Component {
   constructor(props) {
@@ -79,8 +82,8 @@ export default class Main extends Component {
             {loading ? (
               <FaSpinner color="#FFF" size={14} />
             ) : (
-              <FaRegPlusSquare color="#FFF" size={14} />
-            )}
+                <FaRegPlusSquare color="#FFF" size={14} />
+              )}
           </SubmitButton>
         </Form>
 
@@ -88,7 +91,9 @@ export default class Main extends Component {
           {repositories.map(repository => (
             <li key={repository.name}>
               <span>{repository.name}</span>
-              <a href="/">Detalhes</a>
+              <Link to={`/repository/${encodeURIComponent(repository.name)}`}>
+                Detalhes
+              </Link>
             </li>
           ))}
         </List>
